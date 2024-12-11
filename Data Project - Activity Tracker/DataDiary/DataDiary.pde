@@ -17,6 +17,9 @@ int currentMonth = 10, currentYear = 2024;
 // Days of the week
 String[] daysOfWeek = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
+boolean mousePressedHandled = false; // Flag to prevent multiple triggers during a single click
+
+
 void setup() {
   size(1280, 800);
   font = createFont("Arial", 14, true);
@@ -39,7 +42,7 @@ void draw() {
     displayDayView();
   }
 
-  drawViewButtons();
+
 }
 
 // Load CSV data
@@ -76,7 +79,7 @@ void displayMonthView() {
     text(daysOfWeek[i], i * cellWidth + cellWidth / 2, 70);
   }
 
-  int startDay = (getDayOfWeek(currentYear, currentMonth, 1) + 6) % 7;
+  int startDay = getDayOfWeek(currentYear, currentMonth, 1); // 0 = Monday, ..., 6 = Sunday
 
   int dayCounter = 1;
   boolean hasMoreDays = true;
@@ -143,25 +146,6 @@ void displayTooltip(FocusEvent event, float x, float y) {
   text("Task: " + event.taskType, x, y - 35);
   text("Duration: " + event.focusDuration + " mins", x, y - 20);
   text("Distraction: " + event.distraction, x, y - 5);
-}
-
-// Draw navigation buttons
-void drawViewButtons() {
-  String[] views = {"Month", "Week", "Day"};
-  for (int i = 0; i < views.length; i++) {
-    float x = width - 120 + i * 50;
-    float y = 10;
-    fill(viewMode.equalsIgnoreCase(views[i]) ? color(100, 150, 255) : color(220));
-    rect(x, y, 50, 30, 5);
-    fill(0);
-    textAlign(CENTER, CENTER);
-    text(views[i], x + 25, y + 15);
-
-    if (mousePressed && mouseX > x && mouseX < x + 50 && mouseY > y && mouseY < y + 30) {
-      viewMode = views[i].toLowerCase();
-      if (!viewMode.equals("day")) selectedDay = ""; // Clear selected day
-    }
-  }
 }
 
 // Display week view (Placeholder)
@@ -237,6 +221,7 @@ void drawBackButton() {
   }
 }
 
+
 void drawMonthNavigationButtons() {
   String[] labels = {"Previous", "Next"};
   for (int i = 0; i < 2; i++) {
@@ -248,11 +233,18 @@ void drawMonthNavigationButtons() {
     textAlign(CENTER, CENTER);
     text(labels[i], x + 40, y + 15);
 
-    if (mousePressed && mouseX > x && mouseX < x + 80 && mouseY > y && mouseY < y + 30) {
+    // Only navigate if the button is clicked and the action hasn't been handled yet
+    if (mousePressed && !mousePressedHandled &&
+        mouseX > x && mouseX < x + 80 && mouseY > y && mouseY < y + 30) {
       if (labels[i].equals("Previous")) navigateMonth(-1);
       else navigateMonth(1);
+      mousePressedHandled = true; // Mark action as handled
     }
   }
+}
+
+void mouseReleased() {
+  mousePressedHandled = false;
 }
 
 void navigateMonth(int direction) {
@@ -275,22 +267,24 @@ String getMonthName(int month) {
   return monthNames[month - 1];
 }
 
-// Get the day of the week for a specific date (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-int getDayOfWeek(int year, int month, int day) {
-  int y = year, m = month;
+// Get the number of days in a given month, acco0unting for leap years
+int daysInMonth(int year, int month) {
+  if (month == 2) {
+    return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? 29 : 28;
+  }
+  return (month == 4 || month == 6 || month == 9 || month == 11) ? 30 : 31;
+}
+
+int getDayOfWeek(int y, int m, int day) {
   if (m < 3) {
     m += 12;
     y -= 1;
   }
   int k = y % 100;
   int j = y / 100;
-  return (day + (13 * (m + 1)) / 5 + k + (k / 4) + (j / 4) - 2 * j) % 7;
-}
-
-// Get the number of days in a given month, accounting for leap years
-int daysInMonth(int year, int month) {
-  if (month == 2) {
-    return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? 29 : 28;
+  int dayOfWeek = (day + (13 * (m + 1)) / 5 + k + (k / 4) + (j / 4) - 2 * j) % 7;
+  if (dayOfWeek < 0) {
+    dayOfWeek += 7; // Ensure positive index
   }
-  return (month == 4 || month == 6 || month == 9 || month == 11) ? 30 : 31;
+  return (dayOfWeek + 6) % 7 - 1; // Shift Sunday = 0 to Monday = 1
 }
