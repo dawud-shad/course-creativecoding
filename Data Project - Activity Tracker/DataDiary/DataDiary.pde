@@ -36,8 +36,6 @@ void draw() {
     displayTimeline();
   } else if (viewMode.equals("month")) {
     displayMonthView();
-  } else if (viewMode.equals("week")) {
-    displayWeekView();
   } else if (viewMode.equals("day")) {
     displayDayView();
   }
@@ -62,7 +60,6 @@ void groupEventsByDate() {
   }
 }
 
-// Display month view
 void displayMonthView() {
   textAlign(CENTER, CENTER);
   textSize(18);
@@ -105,15 +102,31 @@ void displayMonthView() {
       textAlign(LEFT, TOP);
       text(dayCounter, x + 5, y + 5);
 
-      // Display event circles or "No data"
+      // Display events as rounded rectangles
       if (eventsByDate.containsKey(currentDate)) {
         ArrayList<FocusEvent> dayEvents = eventsByDate.get(currentDate);
-        for (int j = 0; j < dayEvents.size(); j++) {
-          float cx = x + cellWidth / 2;
-          float cy = y + 40 + j * 25;
+        int maxVisibleEvents = 3;
+        float rectSpacing = 20;
+        float rectHeight = 15;
+        float topOffset = 25;
+
+        for (int j = 0; j < min(maxVisibleEvents, dayEvents.size()); j++) {
+          float rectX = x + 5;
+          float rectY = y + topOffset + j * rectSpacing;
+          float rectWidth = cellWidth - 10;
+
           fill(dayEvents.get(j).getColor());
           noStroke();
-          ellipse(cx, cy, 30, 30);
+          rect(rectX, rectY, rectWidth, rectHeight, 5);
+          fill(0);
+          textSize(10);
+          text(dayEvents.get(j).taskType, rectX + 5, rectY + 2);
+        }
+
+        if (dayEvents.size() > maxVisibleEvents) {
+          fill(150);
+          textSize(12);
+          text("+" + (dayEvents.size() - maxVisibleEvents) + " more", x + 5, y + topOffset + maxVisibleEvents * rectSpacing);
         }
       } else {
         textSize(12);
@@ -121,9 +134,12 @@ void displayMonthView() {
         text("No data", x + 5, y + 30);
       }
 
-      if (mousePressed && mouseX > x && mouseX < x + cellWidth && mouseY > y && mouseY < y + cellHeight) {
+      if (mousePressed && !mousePressedHandled &&
+          mouseX > x && mouseX < x + cellWidth &&
+          mouseY > y && mouseY < y + cellHeight) {
         selectedDay = currentDate;
         viewMode = "day";
+        mousePressedHandled = true;
       }
 
       dayCounter++;
@@ -134,9 +150,9 @@ void displayMonthView() {
     }
   }
 
-  drawBackButton();
   drawMonthNavigationButtons();
 }
+
 // Utility to display a tooltip
 void displayTooltip(FocusEvent event, float x, float y) {
   fill(50, 50, 255, 200);
@@ -148,14 +164,6 @@ void displayTooltip(FocusEvent event, float x, float y) {
   text("Distraction: " + event.distraction, x, y - 5);
 }
 
-// Display week view (Placeholder)
-void displayWeekView() {
-  fill(0);
-  textSize(18);
-  text("Week View: Work in Progress", width / 2, height / 2);
-  drawBackButton();
-}
-
 // Display day view
 void displayDayView() {
   fill(0);
@@ -165,7 +173,7 @@ void displayDayView() {
   drawBackButton();
 }
 
-// Display timeline
+// Display daily timeline
 void displayTimeline() {
   fill(0);
   textSize(16);
@@ -224,6 +232,7 @@ void drawBackButton() {
 
 void drawMonthNavigationButtons() {
   String[] labels = {"Previous", "Next"};
+  textSize(14);
   for (int i = 0; i < 2; i++) {
     float x = 150 + i * 100;
     float y = 10;

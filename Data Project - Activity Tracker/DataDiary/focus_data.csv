@@ -3,7 +3,7 @@ Day,Date,Time,Focus Level,Task Type,Focus Duration (minutes),Distraction,Respons
 1,2024-10-01,14:15,6,Exercise,20,Thoughts drifted,None (continued distraction)
 2,2024-10-02,11:0,9,Reading,90,Hunger,Break for snack then resumed
 2,2024-10-02,16:45,4,Social Media,5,Friend texted,Checked message (lost focus)
-Tuesday,2024-10-01,09:00,8,Coding,120,Slack notifications,Mute notifications
+Tuesday,2024-10-01,09:00,8,Coding,120,Teams notifications,Mute notifications
 Tuesday,2024-10-01,11:30,6,Emails,45,Phone call,Ignored call
 Tuesday,2024-10-01,14:00,7,Meeting,90,None,None
 Wednesday,2024-10-02,10:00,5,Documentation,60,Colleague interruption,Asked to reschedule
@@ -11,7 +11,7 @@ Wednesday,2024-10-02,15:00,9,Designing,150,Background noise,Used noise-cancellin
 Thursday,2024-10-03,08:00,6,Planning,30,Twitter notification,Closed app
 Thursday,2024-10-03,13:00,4,Research,90,Hunger,Took a snack break
 Friday,2024-10-04,09:00,7,Coding,180,Email ping,Muted inbox
-Friday,2024-10-04,15:30,8,Debugging,120,Slack notification,Set status to busy
+Friday,2024-10-04,15:30,8,Debugging,120,Teams notification,Set status to busy
 Saturday,2024-10-05,11:00,3,Personal Project,60,TV noise,Turned off TV
 Sunday,2024-10-06,10:30,4,Reading,90,Doorbell,Paused and resumed later
 Monday,2024-10-07,09:00,8,Writing,120,None,None
@@ -20,14 +20,14 @@ Tuesday,2024-10-08,08:30,7,Emails,45,Colleague interruption,Explained to wait
 Tuesday,2024-10-08,13:00,9,Coding,180,None,None
 Wednesday,2024-10-09,10:00,6,Planning,60,Background music,Lowered volume
 Wednesday,2024-10-09,16:00,5,Research,90,Children playing,Used earplugs
-Thursday,2024-10-10,09:00,8,Coding,120,Slack ping,Muted Slack
+Thursday,2024-10-10,09:00,8,Coding,120,Teams ping,Muted Teams
 Thursday,2024-10-10,15:00,4,Documentation,90,Incoming email,Delayed reading email
 Friday,2024-10-11,10:00,7,Debugging,150,None,None
 Friday,2024-10-11,14:30,6,Team Discussion,90,Background noise,Moved to quieter location
 Saturday,2024-10-12,12:00,5,Personal Project,120,Visitors,Took a break
 Sunday,2024-10-13,09:30,8,Reading,150,None,None
 Monday,2024-10-14,11:00,6,Coding,90,Phone notification,Put phone away
-Monday,2024-10-14,15:30,7,Testing,120,Slack ping,Set status to busy
+Monday,2024-10-14,15:30,7,Testing,120,Teams ping,Set status to busy
 Tuesday,2024-10-15,09:00,9,Writing,180,None,None
 Tuesday,2024-10-15,14:00,4,Emails,60,Hunger,Took a snack break
 Wednesday,2024-10-16,10:30,5,Planning,90,Phone call,Ignored call
@@ -35,7 +35,7 @@ Wednesday,2024-10-16,15:00,8,Coding,120,None,None
 Thursday,2024-10-17,08:00,7,Research,150,Background noise,Used noise-cancelling headphones
 Thursday,2024-10-17,14:30,6,Debugging,90,Email ping,Muted inbox
 Friday,2024-10-18,09:00,8,Team Discussion,120,None,None
-Friday,2024-10-18,15:00,5,Documentation,90,Slack ping,Muted Slack
+Friday,2024-10-18,15:00,5,Documentation,90,Teams ping,Muted Teams
 Saturday,2024-10-19,12:00,3,Personal Project,60,TV noise,Turned off TV
 Sunday,2024-10-20,10:30,4,Reading,90,Doorbell,Paused and resumed later
 Monday,2024-10-21,09:00,8,Coding,120,None,None
@@ -44,14 +44,14 @@ Tuesday,2024-10-22,08:30,9,Writing,180,None,None
 Tuesday,2024-10-22,13:00,4,Emails,45,Hunger,Took a snack break
 Wednesday,2024-10-23,10:00,7,Planning,90,Background music,Lowered volume
 Wednesday,2024-10-23,15:30,5,Research,120,Children playing,Used earplugs
-Thursday,2024-10-24,09:00,8,Debugging,150,Slack ping,Set status to busy
+Thursday,2024-10-24,09:00,8,Debugging,150,Teams ping,Set status to busy
 Thursday,2024-10-24,14:30,6,Documentation,90,Incoming email,Delayed reading email
 Friday,2024-10-25,10:00,7,Team Discussion,120,None,None
 Friday,2024-10-25,14:30,6,Coding,150,Background noise,Moved to quieter location
 Saturday,2024-10-26,11:00,3,Personal Project,60,Visitors,Took a break
 Sunday,2024-10-27,09:30,8,Reading,150,None,None
 Monday,2024-10-28,11:00,7,Coding,120,Phone notification,Put phone away
-Monday,2024-10-28,15:00,6,Testing,90,Slack ping,Muted Slack
+Monday,2024-10-28,15:00,6,Testing,90,Teams ping,Muted Teams
 Tuesday,2024-10-29,09:00,9,Writing,180,None,None
 Tuesday,2024-10-29,13:00,4,Emails,60,Hunger,Took a snack break
 Wednesday,2024-10-30,10:30,5,Planning,90,Phone call,Ignored call
