@@ -205,8 +205,8 @@ void displayTimeline() {
     line(timeX, centerY, circleX, circleY);
 
     fill(event.getColor());
-    noStroke();
     ellipse(circleX, circleY, 40, 40);
+    noStroke();
 
     if (dist(mouseX, mouseY, circleX, circleY) < 20) {
       displayTooltip(event, circleX, circleY - 50);
