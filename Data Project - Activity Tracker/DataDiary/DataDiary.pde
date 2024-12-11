@@ -26,7 +26,7 @@ void setup() {
   textFont(font);
   loadData();
   groupEventsByDate();
-  surface.setResizable(true);
+  //surface.setResizable(true);
 }
 
 void draw() {
@@ -39,8 +39,6 @@ void draw() {
   } else if (viewMode.equals("day")) {
     displayDayView();
   }
-
-
 }
 
 // Load CSV data
